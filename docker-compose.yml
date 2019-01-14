@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  web:
+    container_name: web_todo
+    build: .
+    #command: python /usr/src/todo/manage.py runserver 0.0.0.0:8000
+    command: gunicorn todo.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - ./:/usr/src/todo/
+    #ports:
+    #  - 8000:8000
+    expose:
+      - 8000
+    env_file:
+      - ./db_env
+    depends_on:
+      - db
+  db:
+    container_name: db_todo
+    image: postgres:10.5-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+  nginx:
+    container_name: ng_todo
+    build: ./nginx
+    ports:
+      - 1337:80
+    depends_on:
+      - web
+volumes:
+  postgres_data:  
