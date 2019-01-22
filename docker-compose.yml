@@ -6,8 +6,13 @@ services:
     build: .
     #command: python /usr/src/todo/manage.py runserver 0.0.0.0:8000
     command: gunicorn todo.wsgi:application --bind 0.0.0.0:8000
+    #tty: true
+    #stdin_open: true
+    restart: always
     volumes:
       - ./:/usr/src/todo/
+      - static_volume:/usr/src/todo/static
+    #  - ./ssh:/root/.ssh
     #ports:
     #  - 8000:8000
     expose:
@@ -24,9 +29,12 @@ services:
   nginx:
     container_name: ng_todo
     build: ./nginx
+    volumes:
+      - static_volume:/usr/src/todo/static
     ports:
       - 1337:80
     depends_on:
       - web
 volumes:
   postgres_data:  
+  static_volume:

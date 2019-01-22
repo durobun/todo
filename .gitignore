@@ -1,8 +1,7 @@
-*.pyc  
-*~  
-__pycache__  
-db.sqlite3  
-/static  
-db_env  
-secrets.json 
-/.vscode 
+*.pyc
+*~
+__pycache__
+db.sqlite3
+/static
+db_env
+secrets.json

@@ -15,6 +15,10 @@ RUN apk update \
     && pip install psycopg2 \
     && apk del build-deps
 
+# install nodejs & libraries 
+RUN apk add libgcc libstdc++ musl groff \
+    && apk add nodejs
+
 # install dependencies
 RUN pip install --upgrade pip
 RUN pip install pipenv
