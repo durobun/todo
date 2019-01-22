@@ -25,6 +25,9 @@ RUN pip install pipenv
 COPY ./Pipfile /usr/src/todo/Pipfile
 RUN pipenv install --skip-lock --system --dev
 
+#install bootstrap4
+RUN pip install django-bootstrap4
+
 # copy entrypoint.sh
 COPY ./entrypoint.sh /usr/src/todo/entrypoint.sh
 

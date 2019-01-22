@@ -9,7 +9,6 @@ pylint = "*"
 [packages]
 django = "*"
 gunicorn = "*"
-django-bootstrap = "*"
 
 [requires]
 python_version = "3.7"
